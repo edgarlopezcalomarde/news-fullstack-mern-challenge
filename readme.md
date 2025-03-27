@@ -8,7 +8,14 @@
 ### Installation
 
 1. Clone the repo:
+
    ```bash
    git clone https://github.com/edgarlopezcalomarde/news-fullstack-mern-challenge.git
    cd news-fullstack-mern-challenge
+   ```
+
+2. Docker service up with mongodb
+
+   ```bash
+   docker compose -f compose.dev.yml up -d
    ```

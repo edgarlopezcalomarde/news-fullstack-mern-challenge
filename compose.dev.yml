@@ -1,0 +1,24 @@
+name: "news-fullstack-mern-challenge-dev"
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    container_name: db
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: eduardo
+      MONGO_INITDB_ROOT_PASSWORD: PassSegura777
+      MONGO_INITDB_DATABASE: news
+    networks:
+      - dev-network
+volumes:
+  mongo-db:
+    driver: local
+networks:
+  dev-network:
+    driver: bridge

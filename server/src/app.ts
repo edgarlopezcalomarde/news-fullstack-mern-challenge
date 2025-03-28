@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import helmet from "helmet";
 import compress from "compression";
 import cors from "cors";
+import newsRouter from "./routes/news";
 
 const app = express();
 
@@ -13,10 +14,6 @@ app.use(helmet.frameguard({ action: "deny" }));
 app.use(compress());
 app.use(cors());
 
-app.get("/", (_req: Request, res: Response) => {
-  res.json({
-    message: "Test1",
-  });
-});
+app.use("/api", newsRouter);
 
 export default app;

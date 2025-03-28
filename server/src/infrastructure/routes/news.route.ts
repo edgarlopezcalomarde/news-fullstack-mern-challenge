@@ -3,8 +3,8 @@ import { FindAllPostUseCase } from "@application/find-all-post.usecase";
 import { createPostSchema } from "@domain/dto/create-post.dto";
 import { NewsController } from "@infrastructure/controllers/news.controller";
 import { bodyValidator } from "@infrastructure/middleware/body-validator.middleware";
-
 import { tryCatch } from "@infrastructure/middleware/try.middleware";
+
 import { MongoPostRepository } from "@infrastructure/repositories/mongo-post.repository";
 import { Router } from "express";
 

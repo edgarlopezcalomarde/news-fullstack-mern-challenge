@@ -2,8 +2,8 @@ import express from "express";
 import helmet from "helmet";
 import compress from "compression";
 import cors from "cors";
-import newsRouter from "./infrastructure/routes/news.route";
-import { errorMiddleware } from "./infrastructure/middleware/error.middleware";
+import newsRouter from "@infrastructure/routes/news.route";
+import { errorMiddleware } from "@infrastructure/middleware/error.middleware";
 
 const app = express();
 

@@ -1,13 +1,22 @@
 import { CreatePostDto } from "@domain/dto/create-post.dto";
 import { Post } from "@domain/entities/post.entity";
 import { PostRepository } from "@domain/repositories/post.repository";
+import { PostModel } from "@infrastructure/db/schemas/post.model";
 
 export class MongoPostRepository implements PostRepository {
   constructor() {}
-  findAll(): Promise<Post> {
-    throw new Error("Method not implemented.");
+
+  async findAll(): Promise<Array<Post>> {
+    const posts = await PostModel.find();
+    return posts;
   }
-  save(createPost: CreatePostDto): Promise<Post> {
-    throw new Error("Method not implemented.");
+
+  async save(createPost: CreatePostDto): Promise<Post> {
+    const post = await PostModel.create({
+      ...createPost,
+    });
+
+    await post.save();
+    return post;
   }
 }

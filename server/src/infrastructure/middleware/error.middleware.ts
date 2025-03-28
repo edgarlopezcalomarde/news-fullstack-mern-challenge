@@ -1,4 +1,4 @@
-import { APP_ERROR } from "@lib/const";
+import { APP_ERROR } from "src/infrastructure/lib/const";
 import { NextFunction, Request, Response } from "express";
 
 export function errorMiddleware(

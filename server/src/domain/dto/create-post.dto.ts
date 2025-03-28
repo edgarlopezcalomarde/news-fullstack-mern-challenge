@@ -1,3 +1,6 @@
-import { Post } from "../entities/post.entity";
+import * as z from "zod";
+import { postSchema } from "../entities/post.entity";
 
-export type CreatePostDto = Omit<Post, "_id">;
+export const createPostSchema = postSchema.omit({ _id: true });
+
+export type CreatePostDto = z.infer<typeof postSchema>;

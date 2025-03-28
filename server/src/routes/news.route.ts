@@ -8,7 +8,7 @@ newsRouter
       message: "Saved correctly!",
     });
   })
-  .get((req: Request, res: Response) => {
+  .get((req: Request, res: Response, next) => {
     res.json({
       message: "News",
     });

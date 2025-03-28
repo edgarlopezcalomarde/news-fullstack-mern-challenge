@@ -1,8 +1,9 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import helmet from "helmet";
 import compress from "compression";
 import cors from "cors";
-import newsRouter from "./routes/news";
+import newsRouter from "./routes/news.route";
+import { errorMiddleware } from "./middleware/error.middleware";
 
 const app = express();
 
@@ -15,5 +16,6 @@ app.use(compress());
 app.use(cors());
 
 app.use("/api", newsRouter);
+app.use(errorMiddleware);
 
 export default app;

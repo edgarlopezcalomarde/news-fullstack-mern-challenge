@@ -1,5 +1,8 @@
 import app from "./app";
 import { config } from "./infrastructure/lib/config";
+import moongose from "mongoose";
+
+moongose.connect(config.MONGOOSE_URL ?? "");
 
 try {
   app.listen(config.PORT, () => {

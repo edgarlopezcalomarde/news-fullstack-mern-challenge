@@ -17,7 +17,7 @@ const { getAll, save } = new NewsController(
 );
 
 newsRouter
-  .route("/new")
+  .route("/news")
   .post(bodyValidator(createPostSchema), tryCatch(save))
   .get(tryCatch(getAll));
 

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import mkcert from "vite-plugin-mkcert";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";

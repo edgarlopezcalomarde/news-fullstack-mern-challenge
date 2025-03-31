@@ -1,26 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Post } from "../model/post";
 import { useToast } from "@/lib/hooks/use-toast";
 import { apiNews } from "@/lib/api/news";
 
-export function useArchivePost() {
+export function useRemovePost() {
   const { onError } = useToast();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["archive", "post"],
+    mutationKey: ["remove", "post"],
     mutationFn: async ({ postId }: { postId: string }) => {
-      const { data } = await apiNews.patch<{ data: Post }>(
-        "/post/archive/" + postId
-      );
-
-      return data.data;
+      await apiNews.delete("/post/" + postId);
+      return postId;
     },
     onError,
     onSettled: (data, err) => {
       if (!err && data) {
         queryClient.invalidateQueries({
-          queryKey: ["find", "all", "post", "new"],
+          queryKey: ["find", "all", "post", "archived"],
         });
       }
     },

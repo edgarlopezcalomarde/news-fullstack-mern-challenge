@@ -5,9 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Post } from "../lib/model/post";
+import { Post } from "../../lib/model/post";
+import RemoveButton from "../remove-button";
 
-function ArchiveNewsItem({ post }: { post: Post }) {
+function ArchivePostItem({ post }: { post: Post }) {
   return (
     <Card>
       <CardHeader>
@@ -16,9 +17,10 @@ function ArchiveNewsItem({ post }: { post: Post }) {
       </CardHeader>
       <CardContent className="flex flex-col">
         <div>{post.content}</div>
+        <RemoveButton postId={post._id} />
       </CardContent>
     </Card>
   );
 }
 
-export default ArchiveNewsItem;
+export default ArchivePostItem;

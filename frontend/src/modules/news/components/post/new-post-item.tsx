@@ -5,10 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Post } from "../lib/model/post";
-import ArchiveButton from "./archive-button";
+import { Post } from "../../lib/model/post";
+import ArchiveButton from "../archive-button";
 
-function NewNewsItem({ post }: { post: Post }) {
+function NewPostItem({ post }: { post: Post }) {
   return (
     <Card>
       <CardHeader>
@@ -23,4 +23,4 @@ function NewNewsItem({ post }: { post: Post }) {
   );
 }
 
-export default NewNewsItem;
+export default NewPostItem;

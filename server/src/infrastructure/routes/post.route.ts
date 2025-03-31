@@ -1,27 +1,29 @@
 import { ArchivePostUseCase } from "@application/archive-post.usecase";
 import { CreatePostUseCase } from "@application/create-post.usecase";
 import { FindAllPostUseCase } from "@application/find-all-post.usecase";
-import { createPostSchema } from "@domain/dto/create-post.dto";
+import { RemovePostUseCase } from "@application/remove-post.usecase";
 import { NewsController } from "@infrastructure/controllers/news.controller";
-import { bodyValidator } from "@infrastructure/middleware/body-validator.middleware";
 import { tryCatch } from "@infrastructure/middleware/try.middleware";
 import { MongoPostRepository } from "@infrastructure/repositories/mongo-post.repository";
 import { Router } from "express";
 
-const newsRouter = Router();
+const postRouter = Router();
 const postRepository = new MongoPostRepository();
 const findAllPostUseCase = new FindAllPostUseCase(postRepository);
 const createPostUseCase = new CreatePostUseCase(postRepository);
 const archivePostUseCase = new ArchivePostUseCase(postRepository);
+const removePostUseCase = new RemovePostUseCase(postRepository);
 
-const { getAll, save, archive } = new NewsController(
+const { getAll, save, archive, remove } = new NewsController(
   findAllPostUseCase,
   createPostUseCase,
-  archivePostUseCase
+  archivePostUseCase,
+  removePostUseCase
 );
 
-newsRouter.patch("/news/archive/:id", tryCatch(archive));
-newsRouter.get("/news", tryCatch(getAll));
-newsRouter.post("/news", tryCatch(save));
+postRouter.patch("/post/archive/:id", tryCatch(archive));
+postRouter.delete("/post/:id", tryCatch(remove));
+postRouter.get("/post", tryCatch(getAll));
+postRouter.post("/post", tryCatch(save));
 
-export default newsRouter;
+export default postRouter;

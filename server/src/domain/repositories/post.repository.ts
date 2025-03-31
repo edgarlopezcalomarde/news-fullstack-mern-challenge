@@ -6,4 +6,5 @@ export interface PostRepository {
   findAll(query: FindAllDto): Promise<Array<Post>>;
   save(createPost: CreatePostDto): Promise<Post>;
   archive(postId: string): Promise<Post>;
+  remove(postId: string): Promise<boolean>;
 }

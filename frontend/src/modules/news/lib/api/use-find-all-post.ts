@@ -23,7 +23,7 @@ export function useFindAllPost({
       params.append("order", order);
 
       const { data } = await apiNews.get<{ data: Array<Post> }>(
-        "/news?" + params.toString()
+        "/post?" + params.toString()
       );
       return data.data;
     },

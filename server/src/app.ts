@@ -1,5 +1,5 @@
 import { config } from "@infrastructure/lib/config";
-import newsRouter from "@infrastructure/routes/news.route";
+import postRouter from "@infrastructure/routes/post.route";
 import { errorMiddleware } from "@infrastructure/middleware/error.middleware";
 
 import express from "express";
@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-app.use("/api", newsRouter);
+app.use("/api", postRouter);
 app.use(errorMiddleware);
 
 export default app;

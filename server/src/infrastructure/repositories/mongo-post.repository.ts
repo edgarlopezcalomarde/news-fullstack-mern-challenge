@@ -6,14 +6,6 @@ import { PostModel } from "@infrastructure/db/schemas/post.model";
 
 export class MongoPostRepository implements PostRepository {
   constructor() {}
-  async archive(postId: string): Promise<Post> {
-    const post = await PostModel.findById(postId);
-    if (!post) throw new Error("Not Found");
-
-    post.archiveDate = new Date();
-    post.save();
-    return post;
-  }
 
   async findAll({ type, field, order }: FindAllDto): Promise<Array<Post>> {
     let query = PostModel.where({
@@ -37,5 +29,19 @@ export class MongoPostRepository implements PostRepository {
 
     await post.save();
     return post;
+  }
+
+  async archive(postId: string): Promise<Post> {
+    const post = await PostModel.findById(postId);
+    if (!post) throw new Error("Not Found");
+
+    post.archiveDate = new Date();
+    post.save();
+    return post;
+  }
+
+  async remove(postId: string): Promise<boolean> {
+    await PostModel.deleteOne({ _id: postId });
+    return true;
   }
 }

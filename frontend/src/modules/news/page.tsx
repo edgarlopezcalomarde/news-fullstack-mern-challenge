@@ -1,16 +1,13 @@
-import { useState } from "react";
-import ArchiveNewsItem from "./components/archive-news-item";
-import NewNewsItem from "./components/new-news-item";
-import NewsList from "./components/news-list";
-import { useFindAllPost } from "./lib/api/use-find-all-post";
 import { Button } from "@/components/ui/button";
-import { PostType } from "./lib/model/post-type";
+import { useViewType } from "./lib/store/view-type";
+import ArchivePostItem from "./components/post/archive-post-item";
+import NewPostItem from "./components/post/new-post-item";
+import PostList from "./components/post/post-list";
+import { Suspense } from "react";
+import Loading from "@/components/loading";
 
 function NewsPage() {
-  const [type, setType] = useState<PostType | undefined>("new");
-  const { data } = useFindAllPost({
-    type,
-  });
+  const { type, setType } = useViewType();
 
   return (
     <div className="h-screen w-full bg-white flex flex-col p-4 gap-6">
@@ -33,15 +30,19 @@ function NewsPage() {
         </div>
         <Button>Create</Button>
       </div>
-      <NewsList>
-        {data.map((itm) => {
-          if (itm.archiveDate) {
-            return <ArchiveNewsItem post={itm} key={itm._id} />;
-          }
+      <Suspense fallback={<Loading className="h-full w-full" />}>
+        <PostList>
+          {(data) =>
+            data.map((itm) => {
+              if (itm.archiveDate) {
+                return <ArchivePostItem post={itm} key={itm._id} />;
+              }
 
-          return <NewNewsItem post={itm} key={itm._id} />;
-        })}
-      </NewsList>
+              return <NewPostItem post={itm} key={itm._id} />;
+            })
+          }
+        </PostList>
+      </Suspense>
     </div>
   );
 }

@@ -1,13 +1,15 @@
 import { ArchivePostUseCase } from "@application/archive-post.usecase";
 import { CreatePostUseCase } from "@application/create-post.usecase";
 import { FindAllPostUseCase } from "@application/find-all-post.usecase";
+import { RemovePostUseCase } from "@application/remove-post.usecase";
 import { Request, Response } from "express";
 
 export class NewsController {
   constructor(
     private readonly findAllPostUseCase: FindAllPostUseCase,
     private readonly createPostUseCase: CreatePostUseCase,
-    private readonly archivePostUseCase: ArchivePostUseCase
+    private readonly archivePostUseCase: ArchivePostUseCase,
+    private readonly removePostUseCase: RemovePostUseCase
   ) {}
 
   getAll = async (req: Request, res: Response) => {
@@ -37,6 +39,15 @@ export class NewsController {
 
     if (!id) throw new Error("Not Found");
     const data = await this.archivePostUseCase.execute(id);
+    res.json({
+      data,
+    });
+  };
+
+  remove = async (req: Request, res: Response) => {
+    const id = req.params["id"];
+    if (!id) throw new Error("Not Found");
+    const data = await this.removePostUseCase.execute(id);
     res.json({
       data,
     });

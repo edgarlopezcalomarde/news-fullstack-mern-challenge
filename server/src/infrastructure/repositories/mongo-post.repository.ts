@@ -1,13 +1,32 @@
 import { CreatePostDto } from "@domain/dto/create-post.dto";
+import { FindAllDto } from "@domain/dto/find-all.dto";
 import { Post } from "@domain/entities/post.entity";
 import { PostRepository } from "@domain/repositories/post.repository";
 import { PostModel } from "@infrastructure/db/schemas/post.model";
 
 export class MongoPostRepository implements PostRepository {
   constructor() {}
+  async archive(postId: string): Promise<Post> {
+    const post = await PostModel.findById(postId);
+    if (!post) throw new Error("Not Found");
 
-  async findAll(): Promise<Array<Post>> {
-    const posts = await PostModel.find();
+    post.archiveDate = new Date();
+    post.save();
+    return post;
+  }
+
+  async findAll({ type, field, order }: FindAllDto): Promise<Array<Post>> {
+    let query = PostModel.where({
+      archiveDate: {
+        $exists: type === "archived",
+      },
+    });
+
+    if (field && order) {
+      query = query.sort({ [field]: order });
+    }
+
+    const posts = await query;
     return posts;
   }
 

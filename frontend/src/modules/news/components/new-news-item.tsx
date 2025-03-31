@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Post } from "../lib/model/post";
-import { Button } from "@/components/ui/button";
+import ArchiveButton from "./archive-button";
 
 function NewNewsItem({ post }: { post: Post }) {
   return (
@@ -17,7 +17,7 @@ function NewNewsItem({ post }: { post: Post }) {
       </CardHeader>
       <CardContent className="flex flex-col">
         <div>{post.content}</div>
-        <Button>Archive</Button>
+        <ArchiveButton postId={post._id} />
       </CardContent>
     </Card>
   );

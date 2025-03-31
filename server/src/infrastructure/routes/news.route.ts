@@ -1,3 +1,4 @@
+import { ArchivePostUseCase } from "@application/archive-post.usecase";
 import { CreatePostUseCase } from "@application/create-post.usecase";
 import { FindAllPostUseCase } from "@application/find-all-post.usecase";
 import { createPostSchema } from "@domain/dto/create-post.dto";
@@ -11,14 +12,16 @@ const newsRouter = Router();
 const postRepository = new MongoPostRepository();
 const findAllPostUseCase = new FindAllPostUseCase(postRepository);
 const createPostUseCase = new CreatePostUseCase(postRepository);
-const { getAll, save } = new NewsController(
+const archivePostUseCase = new ArchivePostUseCase(postRepository);
+
+const { getAll, save, archive } = new NewsController(
   findAllPostUseCase,
-  createPostUseCase
+  createPostUseCase,
+  archivePostUseCase
 );
 
-newsRouter
-  .route("/news")
-  .post(bodyValidator(createPostSchema), tryCatch(save))
-  .get(tryCatch(getAll));
+newsRouter.patch("/news/archive/:id", tryCatch(archive));
+newsRouter.get("/news", tryCatch(getAll));
+newsRouter.post("/news", tryCatch(save));
 
 export default newsRouter;

@@ -7,17 +7,29 @@ import { Button } from "@/components/ui/button";
 import { PostType } from "./lib/model/post-type";
 
 function NewsPage() {
-  const [type, setType] = useState<PostType | undefined>(undefined);
+  const [type, setType] = useState<PostType | undefined>("new");
   const { data } = useFindAllPost({
     type,
   });
 
   return (
-    <div className="h-screen w-full bg-white flex flex-col p-4">
-      <div className="p-4 flex justify-between ">
-        <div>
-          <Button onClick={() => setType("archived")}>Archive</Button>
-          <Button onClick={() => setType("new")}>New</Button>
+    <div className="h-screen w-full bg-white flex flex-col p-4 gap-6">
+      <div className="flex justify-between ">
+        <div className="border p-1 bg-gray-100 border-gray-400 rounded">
+          <Button
+            onClick={() => setType("new")}
+            className="cursor-pointer"
+            variant={type === "new" ? "default" : "ghost"}
+          >
+            New
+          </Button>
+          <Button
+            onClick={() => setType("archived")}
+            className="cursor-pointer"
+            variant={type === "archived" ? "default" : "ghost"}
+          >
+            Archive
+          </Button>
         </div>
         <Button>Create</Button>
       </div>

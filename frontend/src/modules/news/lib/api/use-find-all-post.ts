@@ -4,26 +4,26 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { PostType } from "../model/post-type";
 
 interface FindAllPostProps {
-  orderField?: string;
-  sortOrder?: "asc" | "desc";
+  field?: string;
+  order?: "asc" | "desc";
   type?: PostType;
 }
 
 export function useFindAllPost({
-  orderField = "storageDate",
-  sortOrder = "desc",
+  field = "storageDate",
+  order = "desc",
   type = "new",
 }: FindAllPostProps) {
   return useSuspenseQuery({
-    queryKey: ["find", "all", "post", orderField, sortOrder, type],
+    queryKey: ["find", "all", "post", type, field, order],
     queryFn: async () => {
       const params = new URLSearchParams();
-      params.append("orderField", orderField);
-      params.append("sortOrder", sortOrder);
+      params.append("field", field);
       params.append("type", type);
+      params.append("order", order);
 
       const { data } = await apiNews.get<{ data: Array<Post> }>(
-        "/news?=" + params.toString()
+        "/news?" + params.toString()
       );
       return data.data;
     },

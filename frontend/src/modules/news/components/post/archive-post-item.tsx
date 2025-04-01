@@ -17,6 +17,7 @@ function ArchivePostItem({ post }: { post: Post }) {
       </CardHeader>
       <CardContent className="flex flex-col">
         <div>{post.content}</div>
+        <div>{(post.archiveDate ?? "").toString()}</div>
         <ButtonRemove postId={post._id} />
       </CardContent>
     </Card>

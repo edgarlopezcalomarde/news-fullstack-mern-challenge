@@ -4,7 +4,8 @@
     "paths": {
       "@domain/*": ["./src/domain/*"],
       "@infrastructure/*": ["./src/infrastructure/*"],
-      "@application/*": ["./src/application/*"]
+      "@application/*": ["./src/application/*"],
+      "@presenter/*": ["./src/presenter/*"]
     },
     /* Projects */
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */

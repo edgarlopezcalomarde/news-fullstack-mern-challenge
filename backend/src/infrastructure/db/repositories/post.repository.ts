@@ -2,7 +2,7 @@ import { CreatePostDto } from "@domain/dto/create-post.dto";
 import { FindAllDto } from "@domain/dto/find-all.dto";
 import { Post } from "@domain/entities/post.entity";
 import { PostRepository } from "@domain/repositories/post.repository";
-import { PostModel } from "@infrastructure/db/schemas/post.model";
+import { PostModel } from "@infrastructure/db/model/post.model";
 
 export class MongoPostRepository implements PostRepository {
   constructor() {}

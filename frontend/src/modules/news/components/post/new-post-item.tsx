@@ -17,6 +17,7 @@ function NewPostItem({ post }: { post: Post }) {
       </CardHeader>
       <CardContent className="flex flex-col">
         <div>{post.content}</div>
+        <div>{(post.storageDate ?? "").toString()}</div>
         <ButtonArchive postId={post._id} />
       </CardContent>
     </Card>

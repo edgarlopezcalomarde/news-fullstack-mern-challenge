@@ -5,7 +5,7 @@
 - Nodejs v22.11.0
 - Docker or MongoDB in local client
 
-### Installation
+### Installation & Run
 
 1. Clone the repo:
 
@@ -18,4 +18,16 @@
 
    ```bash
    docker compose -f compose.dev.yml up -d
+   ```
+
+3. Run
+
+   ```bash
+   cd backend
+   pnpm run dev
+   ```
+
+   ```bash
+   cd frontend
+   pnpm run dev
    ```

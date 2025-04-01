@@ -1,10 +1,14 @@
-import app from "./app";
+import express from "express";
+import { setupExpress } from "@infrastructure/server";
 import { config } from "./infrastructure/lib/config";
 import moongose from "mongoose";
 
-moongose.connect(config.MONGOOSE_URL ?? "");
-
 try {
+  moongose.connect(config.MONGOOSE_URL ?? "");
+
+  const app = express();
+  setupExpress(app);
+
   app.listen(config.PORT, () => {
     console.log(`Server running at http://localhost:${config.PORT}`);
   });

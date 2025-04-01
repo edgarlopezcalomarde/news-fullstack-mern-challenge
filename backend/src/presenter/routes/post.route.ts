@@ -2,9 +2,9 @@ import { ArchivePostUseCase } from "@application/archive-post.usecase";
 import { CreatePostUseCase } from "@application/create-post.usecase";
 import { FindAllPostUseCase } from "@application/find-all-post.usecase";
 import { RemovePostUseCase } from "@application/remove-post.usecase";
-import { PostController } from "@infrastructure/controllers/post.controller";
-import { tryCatch } from "@infrastructure/middleware/try.middleware";
-import { MongoPostRepository } from "@infrastructure/repositories/mongo-post.repository";
+import { MongoPostRepository } from "@infrastructure/db/repositories/post.repository";
+import { PostController } from "@presenter/controllers/post.controller";
+import { tryCatch } from "@presenter/middleware/try.middleware";
 import { Router } from "express";
 
 const postRouter = Router();

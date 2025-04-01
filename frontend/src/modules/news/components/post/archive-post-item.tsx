@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Post } from "../../lib/model/post";
-import RemoveButton from "../remove-button";
+import ButtonRemove from "../button-remove";
 
 function ArchivePostItem({ post }: { post: Post }) {
   return (
@@ -17,7 +17,7 @@ function ArchivePostItem({ post }: { post: Post }) {
       </CardHeader>
       <CardContent className="flex flex-col">
         <div>{post.content}</div>
-        <RemoveButton postId={post._id} />
+        <ButtonRemove postId={post._id} />
       </CardContent>
     </Card>
   );

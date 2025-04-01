@@ -2,7 +2,7 @@ import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRemovePost } from "../lib/api/use-remove-post";
 
-function RemoveButton({ postId }: { postId: string }) {
+function ButtonRemove({ postId }: { postId: string }) {
   const removePost = useRemovePost();
   return (
     <Button variant="destructive" onClick={handleRemove}>
@@ -15,4 +15,4 @@ function RemoveButton({ postId }: { postId: string }) {
   }
 }
 
-export default RemoveButton;
+export default ButtonRemove;

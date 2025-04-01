@@ -5,6 +5,7 @@ import NewPostItem from "./components/post/new-post-item";
 import PostList from "./components/post/post-list";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
+import { DialogCreatePost } from "./components/dialog-create-post";
 
 function NewsPage() {
   const { type, setType } = useViewType();
@@ -28,7 +29,7 @@ function NewsPage() {
             Archive
           </Button>
         </div>
-        <Button>Create</Button>
+        <DialogCreatePost />
       </div>
       <Suspense fallback={<Loading className="h-full w-full" />}>
         <PostList>
@@ -37,7 +38,6 @@ function NewsPage() {
               if (itm.archiveDate) {
                 return <ArchivePostItem post={itm} key={itm._id} />;
               }
-
               return <NewPostItem post={itm} key={itm._id} />;
             })
           }

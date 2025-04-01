@@ -4,7 +4,7 @@ import { FindAllPostUseCase } from "@application/find-all-post.usecase";
 import { RemovePostUseCase } from "@application/remove-post.usecase";
 import { Request, Response } from "express";
 
-export class NewsController {
+export class PostController {
   constructor(
     private readonly findAllPostUseCase: FindAllPostUseCase,
     private readonly createPostUseCase: CreatePostUseCase,
@@ -27,7 +27,7 @@ export class NewsController {
     });
   };
 
-  save = async (req: Request, res: Response) => {
+  create = async (req: Request, res: Response) => {
     const data = await this.createPostUseCase.execute(req.body);
     res.json({
       data,

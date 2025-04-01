@@ -25,6 +25,7 @@ export class MongoPostRepository implements PostRepository {
   async save(createPost: CreatePostDto): Promise<Post> {
     const post = await PostModel.create({
       ...createPost,
+      storageDate: new Date(),
     });
 
     await post.save();

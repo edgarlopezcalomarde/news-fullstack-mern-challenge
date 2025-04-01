@@ -2,7 +2,7 @@ import { ArchivePostUseCase } from "@application/archive-post.usecase";
 import { CreatePostUseCase } from "@application/create-post.usecase";
 import { FindAllPostUseCase } from "@application/find-all-post.usecase";
 import { RemovePostUseCase } from "@application/remove-post.usecase";
-import { NewsController } from "@infrastructure/controllers/news.controller";
+import { PostController } from "@infrastructure/controllers/post.controller";
 import { tryCatch } from "@infrastructure/middleware/try.middleware";
 import { MongoPostRepository } from "@infrastructure/repositories/mongo-post.repository";
 import { Router } from "express";
@@ -14,7 +14,7 @@ const createPostUseCase = new CreatePostUseCase(postRepository);
 const archivePostUseCase = new ArchivePostUseCase(postRepository);
 const removePostUseCase = new RemovePostUseCase(postRepository);
 
-const { getAll, save, archive, remove } = new NewsController(
+const { getAll, create, archive, remove } = new PostController(
   findAllPostUseCase,
   createPostUseCase,
   archivePostUseCase,
@@ -24,6 +24,6 @@ const { getAll, save, archive, remove } = new NewsController(
 postRouter.patch("/post/archive/:id", tryCatch(archive));
 postRouter.delete("/post/:id", tryCatch(remove));
 postRouter.get("/post", tryCatch(getAll));
-postRouter.post("/post", tryCatch(save));
+postRouter.post("/post", tryCatch(create));
 
 export default postRouter;

@@ -3,7 +3,7 @@ import { Archive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useArchivePost } from "../lib/api/use-archive-post";
 
-function ArchiveButton({ postId }: { postId: string }) {
+function ButtonArchive({ postId }: { postId: string }) {
   const archive = useArchivePost();
 
   return (
@@ -18,4 +18,4 @@ function ArchiveButton({ postId }: { postId: string }) {
   }
 }
 
-export default ArchiveButton;
+export default ButtonArchive;

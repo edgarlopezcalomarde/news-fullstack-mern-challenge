@@ -5,7 +5,11 @@ import { useRemovePost } from "../lib/api/use-remove-post";
 function ButtonRemove({ postId }: { postId: string }) {
   const removePost = useRemovePost();
   return (
-    <Button variant="destructive" onClick={handleRemove}>
+    <Button
+      variant="destructive"
+      className="cursor-pointer"
+      onClick={handleRemove}
+    >
       <Trash /> Remove
     </Button>
   );

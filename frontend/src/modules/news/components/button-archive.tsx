@@ -7,7 +7,11 @@ function ButtonArchive({ postId }: { postId: string }) {
   const archive = useArchivePost();
 
   return (
-    <Button onClick={handleArchive}>
+    <Button
+      onClick={handleArchive}
+      className="cursor-pointer"
+      variant="primary"
+    >
       <Archive />
       Archive
     </Button>

@@ -23,6 +23,7 @@ import { useState } from "react";
 import { useCreatePost } from "../lib/api/use-create-post";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { DatePicker } from "@/components/date-picker";
 
 const createPostSchema = z.object({
   title: z.string({ required_error: REQUIRED }).min(1, { message: REQUIRED }),
@@ -61,7 +62,9 @@ export function DialogCreatePost() {
       }}
     >
       <DialogTrigger asChild>
-        <Button>Create</Button>
+        <Button className="cursor-pointer" variant="primary">
+          Create
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -114,7 +117,14 @@ export function DialogCreatePost() {
                     <FormMessage />
                   </div>
                   <FormControl>
-                    <Input type="datetime-local" {...field} />
+                    <DatePicker
+                      onChange={(v) => field.onChange(v ? v.toISOString() : "")}
+                      value={
+                        field.value && !isNaN(Date.parse(field.value))
+                          ? new Date(field.value)
+                          : undefined
+                      }
+                    />
                   </FormControl>
                 </FormItem>
               )}
@@ -151,7 +161,9 @@ export function DialogCreatePost() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Create</Button>
+            <Button type="submit" variant="primary" className="cursor-pointer">
+              Create
+            </Button>
           </form>
         </Form>
       </DialogContent>

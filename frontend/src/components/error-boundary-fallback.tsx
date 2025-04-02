@@ -4,7 +4,9 @@ import { FallbackProps } from "react-error-boundary";
 function ErrorBoundaryFallback(props: FallbackProps) {
   return (
     <div className="flex flex-col gap-2">
-      <Button onClick={props.resetErrorBoundary}>Reintentar</Button>
+      <Button onClick={props.resetErrorBoundary} variant="primary">
+        Reintentar
+      </Button>
       <pre>{props.error.message}</pre>
     </div>
   );

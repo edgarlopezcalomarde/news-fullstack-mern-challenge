@@ -13,18 +13,18 @@ function NewsPage() {
   return (
     <div className="h-screen w-full bg-white flex flex-col p-4 gap-6">
       <div className="flex justify-between ">
-        <div className="border p-1 bg-gray-100 border-gray-400 rounded">
+        <div className="border p-1 bg-chetwode-blue-50 border-chetwode-blue-400 rounded">
           <Button
             onClick={() => setType("new")}
             className="cursor-pointer"
-            variant={type === "new" ? "default" : "ghost"}
+            variant={type === "new" ? "primary" : "ghost"}
           >
             New
           </Button>
           <Button
             onClick={() => setType("archived")}
             className="cursor-pointer"
-            variant={type === "archived" ? "default" : "ghost"}
+            variant={type === "archived" ? "primary" : "ghost"}
           >
             Archive
           </Button>
